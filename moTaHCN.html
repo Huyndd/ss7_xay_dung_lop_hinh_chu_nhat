@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp mô tả hình chữ nhật</title>
+</head>
+<body>
+<label>Chiều dài</label>
+<input type="number" id="inputWidth">
+<label>Chiều rộng</label>
+<input type="number" id="inputHeight">
+<button onclick="main()">Tính</button>
+Kết quả: <span id="result"></span>
+<br><br>
+<canvas id="myCanvas" width="500" heigh="500" style="border: 1px solid #C0C0C0"/>
+
+<script>
+    function main() {
+        var Rectangle = function (width, height) {
+            this.width = width;
+            this.height = height;
+            this.getWidth = function () {
+                return this.width;
+            }
+            this.getHeight = function () {
+                return this.height;
+            }
+            this.setWidth = function (width) {
+                this.width = width;
+            }
+            this.setHeight = function (height) {
+                this.height = height;
+            }
+            this.getAcreage = function () {
+                return width * height;
+            }
+            this.getPerimeter = function () {
+                return (width + height) * 2;
+            }
+        }
+        var inputWidth = Number(document.getElementById('inputWidth').value);
+        var inputHeight = Number(document.getElementById('inputHeight').value);
+        var rectangle = new Rectangle(inputWidth, inputHeight);
+        var acreage = rectangle.getAcreage();
+        var perimeter = rectangle.getPerimeter();
+        document.getElementById('result').innerHTML = "Diện tích: " + acreage + " / " + "Chu vi: " + perimeter;
+        var c = document.getElementById('myCanvas');
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#0000FF';
+        ctx.fillRect(0, 0, inputWidth, inputHeight);
+    }
+</script>
+</body>
+</html>
